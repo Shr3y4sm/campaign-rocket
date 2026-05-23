@@ -21,6 +21,7 @@ const Index = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-Lovable-Secret": "MySuperSecretToken123!",
         },
         body: JSON.stringify(data),
       });
