@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { CampaignForm, type CampaignFormData } from "@/components/CampaignForm";
 import { ResultsDisplay, ErrorDisplay } from "@/components/ResultsDisplay";
 
-const WEBHOOK_URL = "https://slashingly-unprecedented-mae.ngrok-free.dev/webhook/outbound-campaign";
+const WEBHOOK_URL = "https://outbound-machine.onrender.com/webhook/outbound-campaign";
 
 type ViewState = "idle" | "loading" | "success" | "error";
 
