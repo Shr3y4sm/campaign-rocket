@@ -99,7 +99,11 @@ const Index = () => {
         {/* Results */}
         {viewState === "success" && (
           <div className="mt-6">
-            <ResultsDisplay results={results} onRunAgain={handleRunAgain} />
+            {results?.status === "processing" ? (
+              <ProcessingDisplay sheetUrl={results.sheet_url} onRunAgain={handleRunAgain} />
+            ) : (
+              <ResultsDisplay results={results} onRunAgain={handleRunAgain} />
+            )}
           </div>
         )}
 
