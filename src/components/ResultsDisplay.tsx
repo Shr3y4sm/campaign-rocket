@@ -1,4 +1,47 @@
-import { ExternalLink, RotateCcw, AlertCircle } from "lucide-react";
+import { ExternalLink, RotateCcw, AlertCircle, CheckCircle2 } from "lucide-react";
+
+interface ProcessingDisplayProps {
+  sheetUrl?: string;
+  onRunAgain: () => void;
+}
+
+export function ProcessingDisplay({ sheetUrl, onRunAgain }: ProcessingDisplayProps) {
+  return (
+    <div className="bg-card border border-border rounded-lg p-6 container-shadow">
+      <div className="flex items-start gap-3">
+        <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm font-medium text-foreground mb-1">
+            Campaign Initialized!
+          </h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            Leads and drafts are generating in the background. Check your tracking Google Sheet to watch them populate live.
+          </p>
+          {sheetUrl && (
+            <a
+              href={sheetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-primary hover:underline inline-flex items-center gap-1.5 mb-4 break-all"
+            >
+              Open tracking sheet
+              <ExternalLink className="h-3 w-3 flex-shrink-0" />
+            </a>
+          )}
+          <div>
+            <button
+              onClick={onRunAgain}
+              className="text-sm px-4 py-2 rounded-md border border-border text-foreground hover:bg-secondary transition-colors inline-flex items-center gap-1.5"
+            >
+              <RotateCcw className="h-3.5 w-3.5" />
+              Launch another
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 interface ResultsDisplayProps {
   results: Record<string, string> | null;

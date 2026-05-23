@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { CampaignForm, type CampaignFormData } from "@/components/CampaignForm";
-import { ResultsDisplay, ErrorDisplay } from "@/components/ResultsDisplay";
+import { ResultsDisplay, ErrorDisplay, ProcessingDisplay } from "@/components/ResultsDisplay";
 
 const WEBHOOK_URL = "https://outbound-machine.onrender.com/webhook/outbound-campaign";
 
@@ -99,7 +99,11 @@ const Index = () => {
         {/* Results */}
         {viewState === "success" && (
           <div className="mt-6">
-            <ResultsDisplay results={results} onRunAgain={handleRunAgain} />
+            {results?.status === "processing" ? (
+              <ProcessingDisplay sheetUrl={results.sheet_url} onRunAgain={handleRunAgain} />
+            ) : (
+              <ResultsDisplay results={results} onRunAgain={handleRunAgain} />
+            )}
           </div>
         )}
 
